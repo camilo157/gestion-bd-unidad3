@@ -1,8 +1,6 @@
-# Informe LAB-02 — Trazabilidad en MongoDB Community
+﻿# Informe LAB-02 — Trazabilidad en MongoDB Community
 
 **Estudiante:** < Jose Camilo Angulo Rivera >  **Fecha:** <16/11/2026>
-
-> Borrador: completa con tus datos reales (versión, horas, `ctx`) y reescribe con tus palabras.
 
 ## 1. Despliegue, edición y limitación
 Servidor MongoDB 7 Community en contenedor Docker (`mongo:7`, `--auth`). **Hecho verificado:** `buildInfo.modules` está vacío y la auditoría nativa (`--auditDestination`) no existe en esta edición; solo está en Enterprise y Atlas M10+ (REF-U3-04). Esto significa que no puede registrarse de forma nativa quién cambió privilegios ni CRUD con atribución garantizada. Por eso se trabajó con el perfilador, la bitácora de `mongod` y un control compensatorio, sin presentar ninguno como auditoría.
@@ -33,7 +31,7 @@ Para una organización que necesite auditar cambios de privilegios en MongoDB:
 - **Recomendación:** evaluar MongoDB Enterprise o Atlas (M10+) para obtener auditoría nativa de autorización y CRUD, y enviar esos registros a un sistema externo bajo otra custodia. Si no se puede, mantener el control compensatorio, restringir quién administra usuarios (separación de funciones) y registrar fuera del servidor cada solicitud de cambio de privilegios.
 - **Supuestos (no verificados aquí):** volumen y costo de la auditoría nativa, requisitos regulatorios aplicables y capacidad de la organización para custodiar los registros externamente.
 
-## Preguntas de reflexión (borrador)
+## Preguntas de reflexión
 1. **¿Por qué el perfilador no es auditoría de seguridad?** Fue diseñado para analizar desempeño, puede apagarse o modificarse, se sobrescribe y no registra eventos de seguridad como los cambios de privilegios.
 2. **¿Por qué sí aporta trazabilidad?** Registra quién (`user`), desde dónde (`client`), con qué aplicación (`appName`) y cuándo (`ts`) se ejecutó cada operación.
 3. **Riesgo del nivel 2:** los filtros de las consultas pueden contener datos personales, y `system.profile` pasa a ser otro depósito de datos sensibles, además del costo de rendimiento.
