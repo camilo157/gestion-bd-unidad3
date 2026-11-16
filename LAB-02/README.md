@@ -8,8 +8,7 @@
 Requiere Docker y Git Bash. Desde PowerShell, dentro de esta carpeta:
 
 ```powershell
-$env:ESTUDIANTE = "<TU NOMBRE>"
-$env:MSYS_NO_PATHCONV = "1"
+$env:ESTUDIANTE = "Jose Camilo Angulo Rivera"$env:MSYS_NO_PATHCONV = "1"
 & "C:\Program Files\Git\bin\bash.exe" ./ejecutar-lab2.sh
 ```
 
