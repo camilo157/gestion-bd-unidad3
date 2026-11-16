@@ -1,0 +1,43 @@
+# Preparación de datos y roles (sección 6.5)
+
+- **Estudiante:** Jose Camilo Angulo Rivera
+- **Actividad:** Preparación
+- **Fecha de ejecución:** 2026-11-08 19:09:22 HMM
+
+Script `sql/00-preparacion.sql` (psql -a: cada sentencia seguida de su resultado):
+
+```text
+-- LAB Unidad III | Preparación (sección 6.5). Base: comercial. Ejecutar como postgres.
+-- Las contraseñas se asignan aparte (\password en psql interactivo; ver README).
+CREATE TABLE clientes (
+    id BIGSERIAL PRIMARY KEY,
+    nombre VARCHAR(120) NOT NULL,
+    correo VARCHAR(150) NOT NULL,
+    telefono VARCHAR(20),
+    rfc VARCHAR(13),
+    edad INTEGER,
+    ciudad VARCHAR(80),
+    codigo_postal VARCHAR(10),
+    fecha_alta DATE DEFAULT CURRENT_DATE
+);
+CREATE TABLE
+INSERT INTO clientes (nombre, correo, telefono, rfc, edad, ciudad, codigo_postal) VALUES
+('Ana López', 'ana.lopez@example.test', '6671234567', 'LOAA850315ABC', 41, 'Culiacán', '80000'),
+('Carlos Pérez', 'carlos.perez@example.test', '6672345678', 'PECA900720DEF', 35, 'Culiacán', '80100'),
+('María García', 'maria.garcia@example.test', '6673456789', 'GAMA780912GHI', 47, 'Mazatlán', '82000'),
+('Luis Torres', 'luis.torres@example.test', '6674567890', 'TOLU920201JKL', 34, 'Los Mochis', '81200'),
+('Laura Sánchez', 'laura.sanchez@example.test', '6675678901', 'SALA880525MNO', 38, 'Culiacán', '80200');
+INSERT 0 5
+CREATE ROLE app_ventas LOGIN;
+CREATE ROLE
+CREATE ROLE soporte_ana LOGIN;
+CREATE ROLE
+GRANT SELECT, UPDATE ON clientes TO app_ventas;
+GRANT
+GRANT SELECT ON clientes TO soporte_ana;
+GRANT
+```
+
+
+Contraseñas de práctica asignadas con ALTER ROLE ANTES de activar log_statement (por eso no quedan en la bitácora). La guía usa `\password` de forma interactiva; el resultado es equivalente. Contraseñas omitidas: `<REDACTED>`.
+
